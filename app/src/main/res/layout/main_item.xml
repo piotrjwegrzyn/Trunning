@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
     android:background="#8EAF9E"
-    android:orientation="vertical">
+    app:layoutDescription="@xml/main_item_scene" >
 
-    <TextView
-        android:id="@+id/itemTextView"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:gravity="center"
-        tools:text="XD"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="140dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/busName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textAllCaps="true"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        tools:text="Travel" />
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/template_training_location" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/busDastiny"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textSize="17sp"
-        tools:text="Dobczyce –> Kraków" />
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/itemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
 </LinearLayout>
