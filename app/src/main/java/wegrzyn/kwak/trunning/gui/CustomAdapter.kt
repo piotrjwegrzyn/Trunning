@@ -11,7 +11,7 @@ import wegrzyn.kwak.trunning.R
 internal class CustomAdapter(private var itemsList: List<String>) :
     RecyclerView.Adapter<CustomAdapter.MyViewHolder>() {
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var itemTextView: TextView = view.findViewById(R.id.itemTextView)
+        var itemTextView: TextView = view.findViewById(R.id.item_location)
     }
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

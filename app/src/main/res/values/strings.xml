@@ -22,7 +22,7 @@
 
     <string name="libraries_header">Libraries</string>
 
-    <string name="github_header">Repositories</string>
+    <string name="github_header">Repository</string>
     <string name="github_repository">Trunning repository</string>
     <string name="github_repository_title">View code on Github</string>
 
