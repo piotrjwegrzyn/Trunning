@@ -9,7 +9,7 @@
     <string name="template_training_title">Bieganie z Mareczkiem</string>
     <string name="template_training_date">12 mar 19:30</string>
     <string name="template_training_location">Kraków</string>
-    <string name="template_training_time_length">12 min * 10 km</string>
+    <string name="template_training_stats">12 min * 10 km</string>
 
     <string name="title_activity_settings">Settings</string>
 
@@ -31,4 +31,5 @@
     <string name="github_repository_wegrzyn">View piotrjwegrzyn on Github</string>
     <string name="github_repository_kwak">View Sirmarianus on Github</string>
     <string name="github_repository_title_kwak">Sirmarianus</string>
+
 </resources>

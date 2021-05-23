@@ -8,11 +8,12 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import wegrzyn.kwak.trunning.R
 
 class MainActivity : AppCompatActivity() {
 
-    private val itemsList = ArrayList<String>()
+    private val itemsList = ArrayList<MainItem>()
     private lateinit var customAdapter: CustomAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = customAdapter
         prepareItems()
+
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            itemsList.add(MainItem(2, "XDD", "asdasd", "12 mar 19:45", 600, "9 km"))
+            customAdapter.notifyDataSetChanged()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -47,12 +53,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareItems() {
-        itemsList.add("Item 1")
-        itemsList.add("Item 2")
-        itemsList.add("Item 3")
-        itemsList.add("Item 4")
-        itemsList.add("Item 5")
-        itemsList.add("Item 6")
+
+        val mainItem1 = MainItem(1, "Trening z Mareczkiem", "Krakuff", "12 mar 19:30", 600, "12 km")
+
+        val mainItem2 = MainItem(2, "XDD", "Warszafka", "12 mar 19:45", 600, "9 km")
+
+        for (i in 0..10) {
+            itemsList.add(mainItem1)
+            itemsList.add(mainItem2)
+        }
         customAdapter.notifyDataSetChanged()
     }
 }
