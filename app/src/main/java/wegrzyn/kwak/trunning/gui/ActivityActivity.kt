@@ -1,11 +1,12 @@
-package wegrzyn.kwak.trunning
+package wegrzyn.kwak.trunning.gui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import wegrzyn.kwak.trunning.R
 
-class MainActivity : AppCompatActivity() {
+class ActivityActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_activity)
     }
 }
