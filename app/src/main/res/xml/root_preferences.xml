@@ -1,0 +1,39 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/import_export_header">
+
+        <Preference
+            app:key="import_tracks"
+            app:summary="@string/import_summary"
+            app:title="@string/import_title" />
+
+        <Preference
+            app:key="export_tracks"
+            app:summary="@string/export_summary"
+            app:title="@string/export_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/github_header">
+
+        <Preference
+            app:key="github_repository"
+            app:summary="@string/github_repository"
+            app:title="@string/github_repository_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/github_repository_contributors">
+
+        <Preference
+            app:key="github_repository_kwak"
+            app:summary="@string/github_repository_kwak"
+            app:title="@string/github_repository_title_kwak" />
+
+        <Preference
+            app:key="github_repository_wegrzyn"
+            app:summary="@string/github_repository_wegrzyn"
+            app:title="@string/github_repository_title_wegrzyn" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

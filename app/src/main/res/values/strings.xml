@@ -1,5 +1,37 @@
 <resources>
     <string name="app_name">Trunning</string>
-    <string name="title_activity_mapsy">Map</string>
-    <string name="key_google_maps">AIzaSyBXkbrBI2muEsFi42tJSfnq4–5O55aD6-A</string>
+
+    <string name="key_google_maps">AIzaSyDQ-5ePe6_9SrmVc4JjYvr7e68TruYaCZc</string>
+    <string name="button_activity_settings">Settings</string>
+
+
+    <!-- Template texts -->
+
+    <string name="template_training_title">Bieganie z Mareczkiem</string>
+    <string name="template_training_date">12 mar 19:30</string>
+    <string name="template_training_location">Kraków</string>
+    <string name="template_training_stats">12 min * 10 km</string>
+
+    <string name="title_activity_settings">Settings</string>
+
+
+    <string name="import_export_header">Import/export your maps</string>
+    <string name="import_summary">Import your tracks from file</string>
+    <string name="import_title">Import</string>
+    <string name="export_summary">Export your tracks tos file</string>
+    <string name="export_title">Export</string>
+
+    <string name="libraries_header">Libraries</string>
+
+    <string name="github_header">Repository</string>
+    <string name="github_repository">Trunning repository</string>
+    <string name="github_repository_title">View code on Github</string>
+
+    <string name="github_repository_contributors">Contributors</string>
+    <string name="github_repository_title_wegrzyn">piotrjwegrzyn</string>
+    <string name="github_repository_wegrzyn">View piotrjwegrzyn on Github</string>
+    <string name="github_repository_kwak">View Sirmarianus on Github</string>
+    <string name="github_repository_title_kwak">Sirmarianus</string>
+    <string name="title_activity_maps">Map</string>
+
 </resources>
