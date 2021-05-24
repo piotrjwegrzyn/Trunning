@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         prepareItems()
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
-            itemsList.add(MainItem(2, "XDD", "asdasd", "12 mar 19:45", 600, "9 km"))
-            customAdapter.notifyDataSetChanged()
+            val intent = Intent(this, ActivityActivity::class.java)
+            startActivity(intent)
         }
     }
 
