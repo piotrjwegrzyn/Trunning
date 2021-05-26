@@ -1,24 +1,32 @@
 package wegrzyn.kwak.trunning.gui
 
 import android.Manifest
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
+import android.location.Location
 import android.os.Bundle
 import android.os.Looper
+import android.text.InputType
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import wegrzyn.kwak.trunning.R
+import java.lang.String
 import java.util.*
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.sqrt
 
+
 class ActivityActivity : AppCompatActivity() {
 
     private val DEFAULT_UPDATE_INTERVAL = 2
     private val FASTEST_UPDATE_INTERVAL = 1
-    private val MAX_ACCEPTABLE_ACCURACY = 21
+    private val MAX_ACCEPTABLE_ACCURACY = 25
 
     private var isRunning = false
     private var hour = 0
@@ -26,7 +34,12 @@ class ActivityActivity : AppCompatActivity() {
     private var sec = 0
 
 
-    private val dane = Dane.getInstance()
+    private val dane = Data.getInstance()
+
+    private lateinit var tv_Accuracy : TextView
+    private lateinit var tv_Speed : TextView
+    private lateinit var tv_Long : TextView
+    private lateinit var tv_Lat : TextView
 
     private var locationRequest: LocationRequest = LocationRequest.create()
     private lateinit var locationCallback: LocationCallback
@@ -43,6 +56,11 @@ class ActivityActivity : AppCompatActivity() {
             finish()
         }
 
+        tv_Accuracy = findViewById(R.id.tv_Accuracy)
+        tv_Speed = findViewById(R.id.tv_Speed)
+        tv_Long = findViewById(R.id.tv_Long)
+        tv_Lat = findViewById(R.id.tv_Lat)
+
         locationRequest.setInterval((1000 * DEFAULT_UPDATE_INTERVAL).toLong())
         locationRequest.setFastestInterval((1000 * FASTEST_UPDATE_INTERVAL).toLong())
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -53,24 +71,30 @@ class ActivityActivity : AppCompatActivity() {
                 val location = locationResult.lastLocation
                 if (location.accuracy < MAX_ACCEPTABLE_ACCURACY) {
                     dane.addPoint(location)
+                    updateTexts(location)
                 }
             }
         }
         updating()
-    }
+    }  // END of onCreate
         private fun updating() {
             time()
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return
             }
-            fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
-        }
+            fusedLocationProviderClient.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                Looper.getMainLooper()
+            )
+        } // END of updating
 
         fun notUpdating() {
             fusedLocationProviderClient.removeLocationUpdates(locationCallback)
             dane.track_distance = countDistance()
             time()
+
             val random = Random()
             val x = random.nextInt(100000)
             databaseHelper.createTrackTable("Track$x")
@@ -96,7 +120,6 @@ class ActivityActivity : AppCompatActivity() {
             return distance.toInt()
         } // END of countDistance
 
-
         private fun time() {
             if (isRunning) { // Save time for track if tracking was already running
                 val calendar = Calendar.getInstance()
@@ -114,4 +137,27 @@ class ActivityActivity : AppCompatActivity() {
             }
         } // END of time
 
-}
+        private fun updateTexts(location: Location){
+            tv_Lat.setText(String.valueOf(location.getLatitude()))
+            tv_Long.setText(String.valueOf(location.getLongitude()))
+            tv_Accuracy.setText(String.valueOf(location.getAccuracy()))
+            val a = if (location.hasSpeed()) String.valueOf(location.getSpeed()) else "0"
+            tv_Speed.setText(a)
+        }
+
+        private fun showDialogBox(){
+            var m_Text : String
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder.setTitle("Title")
+
+            val input = EditText(this)
+            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            builder.setView(input)
+            builder.setPositiveButton("OK",
+                DialogInterface.OnClickListener { dialog, which -> m_Text = input.text.toString() })
+            builder.setNegativeButton("Cancel",
+                DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
+            builder.show()
+        }
+} // END of ActivityActivity

@@ -8,9 +8,9 @@ import android.location.Location;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dane extends Application {
+public class Data extends Application {
     @SuppressLint("StaticFieldLeak")
-    private static Dane INSTANCE;
+    private static Data INSTANCE;
     @SuppressLint("StaticFieldLeak")
     private static Context context;
 
@@ -23,18 +23,18 @@ public class Dane extends Application {
         super.onCreate();
         INSTANCE = this;
         points = new ArrayList<>();
-        Dane.context = getApplicationContext();
+        Data.context = getApplicationContext();
         databaseHelper = new DatabaseHelper(context);
     }
 
-    public static Dane getInstance(){
+    public static Data getInstance(){
         if (INSTANCE == null){
-            INSTANCE = new Dane();
+            INSTANCE = new Data();
         }
         return INSTANCE;
     }
 
-    public static Context getContext(){return Dane.context;}
+    public static Context getContext(){return Data.context;}
 
     public List<Location> getPoints(){ return points; }
 

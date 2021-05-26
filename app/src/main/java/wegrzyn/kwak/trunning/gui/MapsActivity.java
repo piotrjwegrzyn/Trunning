@@ -35,7 +35,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(@NotNull GoogleMap googleMap) {
 
-        Dane dane = Dane.getInstance();
+        Data dane = Data.getInstance();
         PolylineOptions polylineOptions = new PolylineOptions();
         for (Location location : dane.getPoints()) {
             LatLng point = new LatLng(location.getLatitude(), location.getLongitude());

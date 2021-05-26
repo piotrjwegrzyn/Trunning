@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private final Dane dane = Dane.getInstance();
+    private final Data dane = Data.getInstance();
 
     DatabaseHelper(Context context) {
         super(context, "database_name", null, 1);
@@ -69,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String getTrack_location(){
         String track_location;
         try {
-            Geocoder geocoder = new Geocoder(Dane.getContext(), Locale.getDefault());
+            Geocoder geocoder = new Geocoder(Data.getContext(), Locale.getDefault());
             Location location = dane.getFirstPoint();
             track_location = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 10).get(0).getLocality();
         }

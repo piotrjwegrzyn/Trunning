@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".gui.Dane"
+        android:name=".gui.Data"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,6 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trunning"
         tools:ignore="Instantiatable">
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

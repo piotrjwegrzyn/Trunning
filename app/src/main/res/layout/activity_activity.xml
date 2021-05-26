@@ -18,10 +18,35 @@
             android:orientation="vertical"
             android:layout_weight="2">
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="XDDDDDDDDDDDDDD"/>
+                android:layout_height="70dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Longtitude"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_Long"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="TextView"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Speed"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_Speed"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="TextView"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -30,10 +55,36 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="2">
-            <TextView
+
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="XDDDDDDDDD2"/>
+                android:layout_height="70dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Latitude"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_Lat"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="TextView"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Accuracy"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_Accuracy"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="TextView"
+                android:textAlignment="center" />
 
         </LinearLayout>
     </LinearLayout>

@@ -6,11 +6,8 @@ import android.content.pm.PackageManager
 import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
-import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.CursorAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,16 +17,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import wegrzyn.kwak.trunning.R
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.cos
-import kotlin.math.pow
-import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
 
     private val PERMISSIONS_FINE_LOCATION_CODE = 1
     private val INTERNET_PERMISSION_GRANTED_CODE = 2
 
-    private val dane = Dane.getInstance()
+    private val dane = Data.getInstance()
     private val databaseHelper = dane.databaseHelper;
 
     private val itemsList = ArrayList<MainItem>()
@@ -92,7 +86,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareItems() {
-        itemsList.add(MainItem(0, "AA", "BB", "CC", 10, "DD"))
         val cursor : Cursor = databaseHelper.getCursorToTracksTable()
         if (cursor.count != 0){
             while (cursor.moveToNext()) {
