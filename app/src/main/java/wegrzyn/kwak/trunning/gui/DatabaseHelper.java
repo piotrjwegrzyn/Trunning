@@ -1,11 +1,17 @@
 package wegrzyn.kwak.trunning.gui;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.CharArrayBuffer;
+import android.database.ContentObserver;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
+import android.os.Bundle;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -74,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             track_location = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 10).get(0).getLocality();
         }
         catch (IOException e){
-            track_location = "null";
+            track_location = "";
         }
         return track_location;
     }
@@ -99,13 +105,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String getTrackNameFromId(int id){
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT track_name FROM Tracks WHERE track_id == " + id, new String[] {});
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT track_name FROM Tracks WHERE track_id == " + id, null);
         cursor.moveToFirst();
         return cursor.getString(0);
     }
 
     public Cursor getCursorToTracksTable(){
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        return sqLiteDatabase.rawQuery("SELECT * FROM TRACKS", null);
+            SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+            return sqLiteDatabase.rawQuery("SELECT * FROM Tracks", null);
     }
-}
+
+    public int getLastTrackId(){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT track_id FROM Tracks", null);
+        if(cursor.moveToLast()) {
+            return cursor.getInt(0);
+        }
+        else {
+            return 0;
+        }
+    }
+} // End of DatabaseHelper

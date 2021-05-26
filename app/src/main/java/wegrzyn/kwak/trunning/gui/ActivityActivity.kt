@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import wegrzyn.kwak.trunning.R
 import java.lang.String
 import java.util.*
+import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -94,9 +95,7 @@ class ActivityActivity : AppCompatActivity() {
             fusedLocationProviderClient.removeLocationUpdates(locationCallback)
             dane.track_distance = countDistance()
             time()
-
-            val random = Random()
-            val x = random.nextInt(100000)
+            val x = databaseHelper.lastTrackId + 1
             databaseHelper.createTrackTable("Track$x")
             dane.clearLocations()
         } // END of notUpdating
@@ -107,8 +106,8 @@ class ActivityActivity : AppCompatActivity() {
             var actualLatitude = dane.firstPoint.latitude
             var actualLongtitude = dane.firstPoint.longitude
             for (location in dane.points) {
-                deltaLatitude += location.latitude - actualLatitude
-                deltaLongtitude += location.longitude - actualLongtitude
+                deltaLatitude += abs(location.latitude - actualLatitude)
+                deltaLongtitude += abs(location.longitude - actualLongtitude)
                 actualLatitude = location.latitude
                 actualLongtitude = location.longitude
             }
@@ -143,21 +142,5 @@ class ActivityActivity : AppCompatActivity() {
             tv_Accuracy.setText(String.valueOf(location.getAccuracy()))
             val a = if (location.hasSpeed()) String.valueOf(location.getSpeed()) else "0"
             tv_Speed.setText(a)
-        }
-
-        private fun showDialogBox(){
-            var m_Text : String
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            builder.setTitle("Title")
-
-            val input = EditText(this)
-            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            builder.setView(input)
-            builder.setPositiveButton("OK",
-                DialogInterface.OnClickListener { dialog, which -> m_Text = input.text.toString() })
-            builder.setNegativeButton("Cancel",
-                DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
-
-            builder.show()
         }
 } // END of ActivityActivity

@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
     private val PERMISSIONS_FINE_LOCATION_CODE = 1
     private val INTERNET_PERMISSION_GRANTED_CODE = 2
 
-    private val dane = Data.getInstance()
-    private val databaseHelper = dane.databaseHelper;
+    private lateinit var data : Data
+    private lateinit var databaseHelper : DatabaseHelper
 
     private val itemsList = ArrayList<MainItem>()
     private lateinit var customAdapter: CustomAdapter
@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
+        data = Data.getInstance()
+        databaseHelper = data.databaseHelper
         // -----------------------------------------------------------------------------------------------------------------------------------
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         customAdapter = CustomAdapter(itemsList)
