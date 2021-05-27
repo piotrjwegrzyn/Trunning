@@ -139,4 +139,4 @@ class ActivityActivity : AppCompatActivity() {
             val a = if (location.hasSpeed()) String.valueOf(location.speed) else "0"
             tv_Speed.setText(a)
         }
-} // END of ActivityActivity
+}

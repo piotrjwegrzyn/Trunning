@@ -18,12 +18,12 @@ internal class CustomAdapter(private var itemsList: List<MainItem>) :
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view),
         View.OnClickListener {
 
-
         var whichAmI: Int = 0
         var dateTextView: TextView = view.findViewById(R.id.item_date)
         var titleTextView: TextView = view.findViewById(R.id.item_title)
         var statsTextView: TextView = view.findViewById(R.id.item_stats)
         var locationTextView: TextView = view.findViewById(R.id.item_location)
+
         private val dane = Data.getInstance()
         private val databaseHelper = dane.databaseHelper
 
@@ -32,12 +32,15 @@ internal class CustomAdapter(private var itemsList: List<MainItem>) :
         }
 
         override fun onClick(v: View?) {
+
             val intent = Intent(v?.context, ReviewActivity::class.java)
             intent.putExtra("TRACK_ID", this.whichAmI)
             v?.context?.startActivity(intent)
 
             //databaseHelper.readTrackFromDatabase(databaseHelper.getTrackNameFromId(whichAmI))
             //v?.context?.startActivity(Intent(v.context, MapsActivity::class.java))
+            
+            // stary main ->v?.context?.startActivity(Intent(v.context, MainActivity::class.java))
         }
     }
 

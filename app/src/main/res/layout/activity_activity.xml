@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".gui.ActivityActivity"
     android:orientation="vertical">
 
@@ -19,6 +20,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="horizontal"
         android:baselineAligned="false"
         android:paddingTop="100dp">
@@ -130,5 +132,5 @@
         app:tint="@android:color/white"
         android:src="@drawable/ic_baseline_cancel_24"
         android:contentDescription="@string/stop_activity" />
-
+  
 </androidx.constraintlayout.widget.ConstraintLayout>

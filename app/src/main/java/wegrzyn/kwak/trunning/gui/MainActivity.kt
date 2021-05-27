@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ActivityActivity::class.java)
             startActivity(intent)
         }
-    } // END of onCreate
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareItems() {
+
         val cursor : Cursor = databaseHelper.cursorToTracksTable
         if (cursor.count != 0){
             while (cursor.moveToNext()) {

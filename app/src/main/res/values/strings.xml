@@ -2,6 +2,7 @@
     <string name="app_name">Trunning</string>
 
     <string name="key_google_maps">AIzaSyCwMnhoSVbhGkrbKaD52paluhKby35aMho</string>
+
     <string name="button_activity_settings">Settings</string>
 
 
@@ -32,6 +33,7 @@
     <string name="github_repository_wegrzyn">View piotrjwegrzyn on Github</string>
     <string name="github_repository_kwak">View Sirmarianus on Github</string>
     <string name="github_repository_title_kwak">Sirmarianus</string>
+
     <string name="title_activity_maps">Map</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
