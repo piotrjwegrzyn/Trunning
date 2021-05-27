@@ -1,17 +1,11 @@
 package wegrzyn.kwak.trunning.gui;
 
-import android.content.ContentResolver;
 import android.content.Context;
-import android.database.CharArrayBuffer;
-import android.database.ContentObserver;
 import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Geocoder;
 import android.location.Location;
-import android.net.Uri;
-import android.os.Bundle;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

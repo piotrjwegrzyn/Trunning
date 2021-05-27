@@ -8,6 +8,3 @@ class MainItem(id: Int, name: String, location: String, date: String, time: Int,
     val track_time = time
     val track_distance = distance
 }
-
-
-// android:background="@layout/item_border"

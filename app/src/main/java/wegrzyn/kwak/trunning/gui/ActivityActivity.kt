@@ -1,14 +1,10 @@
 package wegrzyn.kwak.trunning.gui
 
 import android.Manifest
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
-import android.text.InputType
-import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -137,10 +133,10 @@ class ActivityActivity : AppCompatActivity() {
         } // END of time
 
         private fun updateTexts(location: Location){
-            tv_Lat.setText(String.valueOf(location.getLatitude()))
-            tv_Long.setText(String.valueOf(location.getLongitude()))
-            tv_Accuracy.setText(String.valueOf(location.getAccuracy()))
-            val a = if (location.hasSpeed()) String.valueOf(location.getSpeed()) else "0"
+            tv_Lat.setText(String.valueOf(location.latitude))
+            tv_Long.setText(String.valueOf(location.longitude))
+            tv_Accuracy.setText(String.valueOf(location.accuracy))
+            val a = if (location.hasSpeed()) String.valueOf(location.speed) else "0"
             tv_Speed.setText(a)
         }
 } // END of ActivityActivity

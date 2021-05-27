@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gui.ActivityActivity"
-    android:orientation="vertical">
+    tools:context=".gui.ReviewActivity">
 
-    <EditText
+    <TextView
+        android:id="@+id/name_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:text="@string/new_track"
-        android:autofillHints="New track"
         android:textSize="48sp"
         android:textAlignment="center" />
 
@@ -32,7 +30,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="@string/speed"
+                android:text="@string/distance"
                 android:gravity="center"
                 android:textAllCaps="true"
                 android:textAlignment="viewStart"
@@ -42,7 +40,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="@string/accuracy"
+                android:text="@string/datee"
                 android:gravity="center"
                 android:textAllCaps="true"
                 android:textAlignment="viewStart"
@@ -52,7 +50,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="@string/latitude"
+                android:text="@string/time"
                 android:gravity="center"
                 android:textAllCaps="true"
                 android:textAlignment="viewStart"
@@ -62,7 +60,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="@string/longitude"
+                android:text="@string/location"
                 android:gravity="center"
                 android:textAllCaps="true"
                 android:textAlignment="viewStart"
@@ -79,38 +77,38 @@
             android:layout_weight="2">
 
             <TextView
-                android:id="@+id/tv_Speed"
+                android:id="@+id/distance_textview"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                tools:text="Speed"
+                tools:text="5 km"
                 android:gravity="center"
                 android:textSize="64sp"
                 android:textAlignment="center"  />
 
 
             <TextView
-                android:id="@+id/tv_Accuracy"
+                android:id="@+id/date_textview"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                tools:text="Accuracy"
+                tools:text="25/05/2021"
                 android:gravity="center"
                 android:textSize="36sp"
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/tv_Lat"
+                android:id="@+id/time_textview"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                tools:text="Latitude"
+                tools:text="15 min"
                 android:gravity="center"
                 android:textSize="36sp"
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/tv_Long"
+                android:id="@+id/location_textview"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                tools:text="Longitude"
+                tools:text="Kraków"
                 android:gravity="center"
                 android:textSize="36sp"
                 android:textAlignment="center" />
@@ -119,16 +117,18 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab2"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:backgroundTint="@color/red"
+        app:backgroundTint="@color/design_default_color_primary"
         app:tint="@android:color/white"
-        android:src="@drawable/ic_baseline_cancel_24"
-        android:contentDescription="@string/stop_activity" />
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:contentDescription="@string/open_on_maps"
+        android:text="@string/open_on_maps"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

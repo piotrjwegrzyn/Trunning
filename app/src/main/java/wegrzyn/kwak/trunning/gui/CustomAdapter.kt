@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.NonNull
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import wegrzyn.kwak.trunning.R
 
@@ -31,8 +32,12 @@ internal class CustomAdapter(private var itemsList: List<MainItem>) :
         }
 
         override fun onClick(v: View?) {
-            databaseHelper.readTrackFromDatabase(databaseHelper.getTrackNameFromId(whichAmI))
-            v?.context?.startActivity(Intent(v.context, MapsActivity::class.java))
+            val intent = Intent(v?.context, ReviewActivity::class.java)
+            intent.putExtra("TRACK_ID", this.whichAmI)
+            v?.context?.startActivity(intent)
+
+            //databaseHelper.readTrackFromDatabase(databaseHelper.getTrackNameFromId(whichAmI))
+            //v?.context?.startActivity(Intent(v.context, MapsActivity::class.java))
         }
     }
 
@@ -67,9 +72,27 @@ internal class CustomAdapter(private var itemsList: List<MainItem>) :
         holder.whichAmI = item.track_id
         holder.dateTextView.text = item.track_date
         holder.locationTextView.text = item.track_location
-        holder.statsTextView.text = (item.track_time / 60).toString() + " min ꞏ " + item.track_distance
+        holder.statsTextView.text = getStatsText(item)
         holder.titleTextView.text = item.track_name
 
     }
     override fun getItemCount() = itemsList.size + 1
+
+    private fun getStatsText(item: MainItem): String {
+
+        val time = if(item.track_time > 90) {
+            (item.track_time/60).toString() + " min"
+        } else {
+            (item.track_time).toString() + " sec"
+        }
+
+        val distance = if(Integer.parseInt(item.track_distance) > 1000) {
+            (Integer.parseInt(item.track_distance)/1000).toString() + " km"
+        } else {
+            item.track_distance + " m"
+        }
+
+        return "$distance ꞏ $time"
+
+    }
 }

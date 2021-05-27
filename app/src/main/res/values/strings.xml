@@ -33,5 +33,16 @@
     <string name="github_repository_kwak">View Sirmarianus on Github</string>
     <string name="github_repository_title_kwak">Sirmarianus</string>
     <string name="title_activity_maps">Map</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="speed">Speed</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="new_track">New track</string>
+    <string name="stop_activity">Stop activity</string>
+    <string name="open_on_maps">Show on maps</string>
+    <string name="distance">Distance</string>
+    <string name="location">Location</string>
+    <string name="time">Time</string>
+    <string name="datee">Date</string>
 
 </resources>

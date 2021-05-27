@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareItems() {
-        val cursor : Cursor = databaseHelper.getCursorToTracksTable()
+        val cursor : Cursor = databaseHelper.cursorToTracksTable
         if (cursor.count != 0){
             while (cursor.moveToNext()) {
                 val temp = MainItem(
@@ -117,5 +117,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-} // END of MainActivity
+}
