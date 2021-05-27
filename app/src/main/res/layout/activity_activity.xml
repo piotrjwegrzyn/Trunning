@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gui.ActivityActivity">
 
+    tools:context=".gui.ActivityActivity"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/new_track"
+        android:autofillHints="New track"
+        android:textSize="48sp"
+        android:textAlignment="center" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+
+        android:orientation="horizontal"
+        android:baselineAligned="false"
+        android:paddingTop="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,8 +33,44 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="XDDDDDDDDDDDDDD"/>
+                android:layout_height="100dp"
+                android:text="@string/speed"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textAlignment="viewStart"
+                android:textSize="30sp"
+                android:paddingLeft="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/accuracy"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textAlignment="viewStart"
+                android:textSize="30sp"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/latitude"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textAlignment="viewStart"
+                android:textSize="30sp"
+                android:paddingLeft="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/longitude"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textAlignment="viewStart"
+                android:textSize="30sp"
+                android:paddingLeft="10dp" />
+
 
         </LinearLayout>
 
@@ -30,10 +79,44 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="2">
+
             <TextView
+                android:id="@+id/tv_Speed"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="XDDDDDDDDD2"/>
+                android:layout_height="100dp"
+                tools:text="Speed"
+                android:gravity="center"
+                android:textSize="64sp"
+                android:textAlignment="center"  />
+
+
+            <TextView
+                android:id="@+id/tv_Accuracy"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                tools:text="Accuracy"
+                android:gravity="center"
+                android:textSize="36sp"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_Lat"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                tools:text="Latitude"
+                android:gravity="center"
+                android:textSize="36sp"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_Long"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                tools:text="Longitude"
+                android:gravity="center"
+                android:textSize="36sp"
+                android:textAlignment="center" />
+
 
         </LinearLayout>
     </LinearLayout>
@@ -47,6 +130,7 @@
         android:layout_margin="16dp"
         app:backgroundTint="@color/red"
         app:tint="@android:color/white"
-        android:src="@drawable/ic_baseline_cancel_24" />
-
+        android:src="@drawable/ic_baseline_cancel_24"
+        android:contentDescription="@string/stop_activity" />
+  
 </androidx.constraintlayout.widget.ConstraintLayout>
