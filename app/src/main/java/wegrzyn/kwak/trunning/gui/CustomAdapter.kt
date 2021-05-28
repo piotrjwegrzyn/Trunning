@@ -32,11 +32,6 @@ internal class CustomAdapter(private var itemsList: List<MainItem>) :
             val intent = Intent(v?.context, ReviewActivity::class.java)
             intent.putExtra("TRACK_ID", this.whichAmI)
             v?.context?.startActivity(intent)
-
-            //databaseHelper.readTrackFromDatabase(databaseHelper.getTrackNameFromId(whichAmI))
-            //v?.context?.startActivity(Intent(v.context, MapsActivity::class.java))
-            
-            // stary main ->v?.context?.startActivity(Intent(v.context, MainActivity::class.java))
         }
     }
 

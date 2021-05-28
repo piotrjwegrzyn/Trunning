@@ -1,7 +1,10 @@
 package wegrzyn.kwak.trunning.gui
 
 import android.Manifest
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.os.Build
@@ -10,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.*
@@ -26,8 +30,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var data : Data
     private lateinit var databaseHelper : DatabaseHelper
 
-    private val itemsList = ArrayList<MainItem>()
+    private var itemsList = ArrayList<MainItem>()
     private lateinit var customAdapter: CustomAdapter
+    private var addListener: BroadcastReceiver? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +58,9 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
+
+        registerAddListener()
+
         data = Data.getInstance()
         databaseHelper = data.databaseHelper
         // -----------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +80,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         menu?: return false
-
         menu.add(R.string.button_activity_settings).also {
 
             it.setIcon(R.drawable.ic_baseline_settings_24)
@@ -81,15 +89,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 return@setOnMenuItemClickListener true
             }
-
         }
-
         return true
     }
 
     private fun prepareItems() {
         val cursor : Cursor = databaseHelper.cursorToTracksTable
-        if (cursor.count != 0){
+        if (cursor.count != 0) {
             while (cursor.moveToNext()) {
                 val temp = MainItem(
                     cursor.getInt(0),
@@ -116,5 +122,34 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+    fun registerAddListener() {
+        if (addListener != null) {
+            return
+        }
+        addListener = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                if (intent.getBooleanExtra("change", false)) {
+                    itemsList = ArrayList()
+                    findViewById<RecyclerView>(R.id.recyclerView).adapter = CustomAdapter(itemsList)
+                    prepareItems()
+                    findViewById<RecyclerView>(R.id.recyclerView).invalidate()
+                }
+            }
+        }
+        LocalBroadcastManager.getInstance(this).registerReceiver(addListener as BroadcastReceiver, IntentFilter("change"))
+    }
+    private fun unregisterAddListener() {
+        if (addListener != null) {
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(addListener!!)
+            addListener = null
+        }
+    }
+
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterAddListener()
     }
 }

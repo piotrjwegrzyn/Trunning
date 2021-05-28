@@ -46,5 +46,7 @@
     <string name="location">Location</string>
     <string name="time">Time</string>
     <string name="datee">Date</string>
+    <string name="title_review_activity">Review of track</string>
+    <string name="title_new_activity">New activity</string>
 
 </resources>

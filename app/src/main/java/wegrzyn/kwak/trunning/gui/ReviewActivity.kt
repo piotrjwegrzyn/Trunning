@@ -3,6 +3,7 @@ package wegrzyn.kwak.trunning.gui
 import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -34,10 +35,15 @@ class ReviewActivity : AppCompatActivity() {
         if (cursor.count != 0){
             cursor.move(whichAmI)
             tv_trackName.text = cursor.getString(1)
-            tv_location.text =  cursor.getString(2)
+            tv_distance.text = getDistanceText(cursor.getInt(5))
             tv_date.text = cursor.getString(3)
-            tv_time.text = cursor.getInt(4).toString()
-            tv_distance.text = cursor.getString(5)
+            tv_time.text = getTimeText(cursor.getInt(4))
+            if(cursor.getString(2).length <= 2) {
+                tv_location.text = "–"
+            } else {
+                tv_location.text =  cursor.getString(2)
+            }
+
         }
 
         findViewById<ExtendedFloatingActionButton>(R.id.fab3).setOnClickListener {
@@ -47,5 +53,23 @@ class ReviewActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
     } // END of onCreate
+
+    private fun getTimeText(time: Int): String = if (time > 90) {
+        (time / 60).toString() + " min"
+    } else {
+        "$time sec"
+    }
+
+    private fun getDistanceText(dis: Int): String = if(dis > 1000) {
+        "$dis km"
+    } else "$dis m"
+
+    @Override
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        finish()
+        return true
+    }
 }
