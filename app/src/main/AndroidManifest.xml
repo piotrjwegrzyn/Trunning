@@ -22,7 +22,9 @@
 
         android:theme="@style/Theme.Trunning"
         tools:ignore="Instantiatable">
-        <activity android:name=".gui.ReviewActivity"></activity>
+        <activity
+            android:name=".gui.ReviewActivity"
+            android:label="@string/title_review_activity"/>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -42,7 +44,8 @@
         <activity
             android:name=".gui.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".gui.ActivityActivity" />
+        <activity android:name=".gui.ActivityActivity"
+            android:label="@string/title_new_activity"/>
         <activity
             android:name=".gui.SettingsActivity"
             android:label="@string/title_activity_settings" />

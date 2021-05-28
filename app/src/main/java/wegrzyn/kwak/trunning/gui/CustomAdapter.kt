@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.NonNull
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import wegrzyn.kwak.trunning.R
 
@@ -24,9 +23,6 @@ internal class CustomAdapter(private var itemsList: List<MainItem>) :
         var statsTextView: TextView = view.findViewById(R.id.item_stats)
         var locationTextView: TextView = view.findViewById(R.id.item_location)
 
-        private val dane = Data.getInstance()
-        private val databaseHelper = dane.databaseHelper
-
         init {
             itemView.setOnClickListener(this)
         }
@@ -36,11 +32,6 @@ internal class CustomAdapter(private var itemsList: List<MainItem>) :
             val intent = Intent(v?.context, ReviewActivity::class.java)
             intent.putExtra("TRACK_ID", this.whichAmI)
             v?.context?.startActivity(intent)
-
-            //databaseHelper.readTrackFromDatabase(databaseHelper.getTrackNameFromId(whichAmI))
-            //v?.context?.startActivity(Intent(v.context, MapsActivity::class.java))
-            
-            // stary main ->v?.context?.startActivity(Intent(v.context, MainActivity::class.java))
         }
     }
 

@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private final Data dane = Data.getInstance();
+    private final Data data = Data.getInstance();
 
     DatabaseHelper(Context context) {
         super(context, "database_name", null, 1);
@@ -48,21 +48,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTable);
 
         insertPointsToTrackTable(sqLiteDatabase, name);
-        insertToTracks(sqLiteDatabase, name);
+        insertToTracks(sqLiteDatabase);
     }
 
     private void insertPointsToTrackTable(SQLiteDatabase sqLiteDatabase, String name){
-        for (Location location : dane.getPoints()){
+        for (Location location : data.getPoints()){
             String insert =  "INSERT INTO " + name + "(point_latitude, point_longitude) VALUES (" +
                     location.getLatitude() + "," + location.getLongitude() + ")";
             sqLiteDatabase.execSQL(insert);
         }
     }
 
-    private void insertToTracks(SQLiteDatabase sqLiteDatabase, String name){
+    private void insertToTracks(SQLiteDatabase sqLiteDatabase){
         String insert = "INSERT INTO Tracks(track_name, track_location, track_date, track_time," +
-                " track_distance, track_minimap) VALUES ('" + name + "', '" + getTrack_location() + "', '" +
-                getTrack_date() + "', '" + dane.getTrack_time() + "', '" + dane.getTrack_distance() +"', '" + "null')";
+                " track_distance, track_minimap) VALUES ('" + data.getTrack_name() + "', '" + getTrack_location() + "', '" +
+                getTrack_date() + "', '" + data.getTrack_time() + "', '" + data.getTrack_distance() +"', '" + "null')";
                 sqLiteDatabase.execSQL(insert);
     }
 
@@ -70,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String track_location;
         try {
             Geocoder geocoder = new Geocoder(Data.getContext(), Locale.getDefault());
-            Location location = dane.getFirstPoint();
+            Location location = data.getFirstPoint();
             track_location = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 10).get(0).getLocality();
         }
         catch (IOException e){
@@ -92,16 +92,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Location temp = new Location("");
             temp.setLatitude(cursor.getDouble(1));
             temp.setLongitude(cursor.getDouble(2));
-            dane.addPoint(temp);
+            data.addPoint(temp);
         }
         cursor.close();
-    }
-
-    public String getTrackNameFromId(int id){
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT track_name FROM Tracks WHERE track_id == " + id, null);
-        cursor.moveToFirst();
-        return cursor.getString(0);
     }
 
     public Cursor getCursorToTracksTable(){
