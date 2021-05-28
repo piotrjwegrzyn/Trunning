@@ -88,7 +88,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareItems() {
-
         val cursor : Cursor = databaseHelper.cursorToTracksTable
         if (cursor.count != 0){
             while (cursor.moveToNext()) {

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.NonNull
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import wegrzyn.kwak.trunning.R
 
@@ -23,9 +22,6 @@ internal class CustomAdapter(private var itemsList: List<MainItem>) :
         var titleTextView: TextView = view.findViewById(R.id.item_title)
         var statsTextView: TextView = view.findViewById(R.id.item_stats)
         var locationTextView: TextView = view.findViewById(R.id.item_location)
-
-        private val dane = Data.getInstance()
-        private val databaseHelper = dane.databaseHelper
 
         init {
             itemView.setOnClickListener(this)

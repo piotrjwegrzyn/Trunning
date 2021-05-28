@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -21,8 +22,8 @@ import kotlin.math.sqrt
 
 class ActivityActivity : AppCompatActivity() {
 
-    private val DEFAULT_UPDATE_INTERVAL = 2
-    private val FASTEST_UPDATE_INTERVAL = 1
+    private val DEFAULT_UPDATE_INTERVAL = 4
+    private val FASTEST_UPDATE_INTERVAL = 3
     private val MAX_ACCEPTABLE_ACCURACY = 25
 
     private var isRunning = false
@@ -31,43 +32,47 @@ class ActivityActivity : AppCompatActivity() {
     private var sec = 0
 
 
-    private val dane = Data.getInstance()
+    private val data = Data.getInstance()
 
     private lateinit var tv_Accuracy : TextView
     private lateinit var tv_Speed : TextView
     private lateinit var tv_Long : TextView
     private lateinit var tv_Lat : TextView
+    private lateinit var et_trackName : EditText
 
     private var locationRequest: LocationRequest = LocationRequest.create()
     private lateinit var locationCallback: LocationCallback
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private val databaseHelper = dane.databaseHelper
+    private val databaseHelper = data.databaseHelper
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_activity)
 
-        findViewById<FloatingActionButton>(R.id.fab2).setOnClickListener {
-            notUpdating()
-            finish()
-        }
-
         tv_Accuracy = findViewById(R.id.tv_Accuracy)
         tv_Speed = findViewById(R.id.tv_Speed)
         tv_Long = findViewById(R.id.tv_Long)
         tv_Lat = findViewById(R.id.tv_Lat)
+        et_trackName = findViewById(R.id.et_trackName)
 
-        locationRequest.setInterval((1000 * DEFAULT_UPDATE_INTERVAL).toLong())
-        locationRequest.setFastestInterval((1000 * FASTEST_UPDATE_INTERVAL).toLong())
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+        findViewById<FloatingActionButton>(R.id.fab2).setOnClickListener {
+            val temp = et_trackName.text
+            data.track_name = temp.toString()
+            notUpdating()
+            finish()
+        }
+
+        locationRequest.interval = (1000 * DEFAULT_UPDATE_INTERVAL).toLong()
+        locationRequest.fastestInterval = (1000 * FASTEST_UPDATE_INTERVAL).toLong()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 val location = locationResult.lastLocation
                 if (location.accuracy < MAX_ACCEPTABLE_ACCURACY) {
-                    dane.addPoint(location)
+                    data.addPoint(location)
                     updateTexts(location)
                 }
             }
@@ -89,19 +94,19 @@ class ActivityActivity : AppCompatActivity() {
 
         fun notUpdating() {
             fusedLocationProviderClient.removeLocationUpdates(locationCallback)
-            dane.track_distance = countDistance()
+            data.track_distance = countDistance()
             time()
             val x = databaseHelper.lastTrackId + 1
             databaseHelper.createTrackTable("Track$x")
-            dane.clearLocations()
+            data.clearLocations()
         } // END of notUpdating
 
         private fun countDistance(): Int {
             var deltaLatitude = 0.0
             var deltaLongtitude = 0.0
-            var actualLatitude = dane.firstPoint.latitude
-            var actualLongtitude = dane.firstPoint.longitude
-            for (location in dane.points) {
+            var actualLatitude = data.firstPoint.latitude
+            var actualLongtitude = data.firstPoint.longitude
+            for (location in data.points) {
                 deltaLatitude += abs(location.latitude - actualLatitude)
                 deltaLongtitude += abs(location.longitude - actualLongtitude)
                 actualLatitude = location.latitude
@@ -109,7 +114,7 @@ class ActivityActivity : AppCompatActivity() {
             }
             val deltaLatitudeInMeters = deltaLatitude * 111320
             val deltaLongtitudeInMeters =
-                deltaLongtitude * 40075000 * cos(dane.firstPoint.latitude) / 360
+                deltaLongtitude * 40075000 * cos(data.firstPoint.latitude) / 360
             val distance =
                 sqrt(deltaLatitudeInMeters.pow(2.0) + deltaLongtitudeInMeters.pow(2.0))
             return distance.toInt()
@@ -121,7 +126,7 @@ class ActivityActivity : AppCompatActivity() {
                 val hour = calendar[Calendar.HOUR_OF_DAY]
                 val min = calendar[Calendar.MINUTE]
                 val sec = calendar[Calendar.SECOND]
-                dane.track_time = 3600 * (hour - this.hour) + 60 * (min - this.min) + sec - this.sec
+                data.track_time = 3600 * (hour - this.hour) + 60 * (min - this.min) + sec - this.sec
                 isRunning = false
             } else { // Save time for tracking start
                 val calendar = Calendar.getInstance()
@@ -133,10 +138,10 @@ class ActivityActivity : AppCompatActivity() {
         } // END of time
 
         private fun updateTexts(location: Location){
-            tv_Lat.setText(String.valueOf(location.latitude))
-            tv_Long.setText(String.valueOf(location.longitude))
-            tv_Accuracy.setText(String.valueOf(location.accuracy))
+            tv_Lat.text = String.valueOf(location.latitude)
+            tv_Long.text = String.valueOf(location.longitude)
+            tv_Accuracy.text = String.valueOf(location.accuracy)
             val a = if (location.hasSpeed()) String.valueOf(location.speed) else "0"
-            tv_Speed.setText(a)
+            tv_Speed.text = a
         }
 }

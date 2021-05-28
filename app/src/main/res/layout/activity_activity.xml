@@ -9,67 +9,70 @@
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/et_trackName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints="New track"
         android:inputType="textPersonName"
         android:text="@string/new_track"
-        android:autofillHints="New track"
-        android:textSize="48sp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="48sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:orientation="horizontal"
         android:baselineAligned="false"
-        android:paddingTop="100dp">
+        android:orientation="horizontal"
+        android:paddingTop="100dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
                 android:text="@string/speed"
-                android:gravity="center"
-                android:textAllCaps="true"
                 android:textAlignment="viewStart"
-                android:textSize="30sp"
-                android:paddingLeft="10dp"/>
+                android:textAllCaps="true"
+                android:textSize="30sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
                 android:text="@string/accuracy"
-                android:gravity="center"
-                android:textAllCaps="true"
                 android:textAlignment="viewStart"
-                android:textSize="30sp"
-                android:paddingLeft="10dp" />
+                android:textAllCaps="true"
+                android:textSize="30sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
                 android:text="@string/latitude"
-                android:gravity="center"
-                android:textAllCaps="true"
                 android:textAlignment="viewStart"
-                android:textSize="30sp"
-                android:paddingLeft="10dp"/>
+                android:textAllCaps="true"
+                android:textSize="30sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="@string/longitude"
                 android:gravity="center"
-                android:textAllCaps="true"
+                android:paddingLeft="10dp"
+                android:text="@string/longitude"
                 android:textAlignment="viewStart"
-                android:textSize="30sp"
-                android:paddingLeft="10dp" />
+                android:textAllCaps="true"
+                android:textSize="30sp" />
 
 
         </LinearLayout>
@@ -77,45 +80,45 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_Speed"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                tools:text="Speed"
                 android:gravity="center"
+                android:textAlignment="center"
                 android:textSize="64sp"
-                android:textAlignment="center"  />
+                tools:text="Speed" />
 
 
             <TextView
                 android:id="@+id/tv_Accuracy"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                tools:text="Accuracy"
                 android:gravity="center"
+                android:textAlignment="center"
                 android:textSize="36sp"
-                android:textAlignment="center" />
+                tools:text="Accuracy" />
 
             <TextView
                 android:id="@+id/tv_Lat"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                tools:text="Latitude"
                 android:gravity="center"
+                android:textAlignment="center"
                 android:textSize="36sp"
-                android:textAlignment="center" />
+                tools:text="Latitude" />
 
             <TextView
                 android:id="@+id/tv_Long"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                tools:text="Longitude"
                 android:gravity="center"
+                android:textAlignment="center"
                 android:textSize="36sp"
-                android:textAlignment="center" />
+                tools:text="Longitude" />
 
 
         </LinearLayout>

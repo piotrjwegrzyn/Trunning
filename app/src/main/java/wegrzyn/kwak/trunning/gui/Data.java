@@ -14,6 +14,7 @@ public class Data extends Application {
     @SuppressLint("StaticFieldLeak")
     private static Context context;
 
+    private String track_name;
     private ArrayList<Location> points;
     private int track_distance;
     private int track_time;
@@ -55,4 +56,8 @@ public class Data extends Application {
     public int getTrack_distance() { return track_distance; }
 
     public DatabaseHelper getDatabaseHelper() { return databaseHelper; }
+
+    public String getTrack_name() { return track_name; }
+
+    public void setTrack_name(String track_name) { this.track_name = track_name; }
 }

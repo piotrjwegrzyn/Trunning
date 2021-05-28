@@ -32,19 +32,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(@NotNull GoogleMap googleMap) {
 
-        Data dane = Data.getInstance();
+        Data data = Data.getInstance();
         PolylineOptions polylineOptions = new PolylineOptions();
-        for (Location location : dane.getPoints()) {
+        for (Location location : data.getPoints()) {
             LatLng point = new LatLng(location.getLatitude(), location.getLongitude());
             polylineOptions.add(point);
         }
         polylineOptions.color(Color.rgb(0,120,200));
         googleMap.addPolyline(polylineOptions);
 
-        Location start = dane.getFirstPoint();
-        Location end = dane.getLastPoint();
+        Location start = data.getFirstPoint();
+        Location end = data.getLastPoint();
         googleMap.addMarker(new MarkerOptions().position(new LatLng(start.getLatitude(), start.getLongitude())));
         googleMap.addMarker(new MarkerOptions().position(new LatLng(end.getLatitude(), end.getLongitude())));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(end.getLatitude(), end.getLongitude()), 15f));
+        data.clearLocations();
     }
 }
