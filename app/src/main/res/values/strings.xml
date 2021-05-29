@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Trunning</string>
 
-    <string name="key_google_maps">AIzaSyCwMnhoSVbhGkrbKaD52paluhKby35aMho</string>
+    <string name="key_google_maps">YOUR GOOGLE MAPS KEY SHOULD BE HERE IF APK IS TO WORK</string>
 
     <string name="button_activity_settings">Settings</string>
 
