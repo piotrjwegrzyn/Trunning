@@ -64,7 +64,7 @@ class ReviewActivity : AppCompatActivity() {
     }
 
     private fun getDistanceText(dis: Int): String = if(dis > 1000) {
-        "$dis km"
+        "${dis/1000} km"
     } else "$dis m"
 
     @Override
