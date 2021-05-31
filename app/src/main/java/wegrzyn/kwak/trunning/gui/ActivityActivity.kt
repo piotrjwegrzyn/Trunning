@@ -25,8 +25,8 @@ import kotlin.math.sqrt
 
 class ActivityActivity : AppCompatActivity() {
 
-    private val DEFAULT_UPDATE_INTERVAL = 4
-    private val FASTEST_UPDATE_INTERVAL = 3
+    private val DEFAULT_UPDATE_INTERVAL = 3
+    private val FASTEST_UPDATE_INTERVAL = 2
     private val MAX_ACCEPTABLE_ACCURACY = 25
 
     private var isRunning = false
@@ -158,7 +158,15 @@ class ActivityActivity : AppCompatActivity() {
     }
 
     private fun getSpeed(speed: Double) : String {
-        return DecimalFormat("#.0").format(speed).toString() + " m/s"
+
+        val dec = speed.toInt()
+
+        if(dec == 0) {
+            return "0 m/s"
+        }
+        val comma = ((speed*10).toInt() - dec*10)
+
+        return "$dec,$comma m/s"
     }
 
     @Override
